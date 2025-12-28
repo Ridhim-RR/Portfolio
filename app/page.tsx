@@ -26,23 +26,12 @@ const workHistory = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-neutral-50 px-4 py-12 md:px-8 lg:px-12">
+    <main className="min-h-screen  px-4 py-12 md:px-8 lg:px-12">
       <article className="mx-auto max-w-4xl space-y-12">
         <h1 className="text-4xl font-semibold mb-8">Ridhim Singh Raizada</h1>
         <section>
-          <p className="text-neutral-700">
-            Hi, I am Ridhim Full Stack Developer with 3+ years of hands-on
-            experience building scalable web applications
-          </p>
-          <p className="text-neutral-700 mt-2">
-            -💡 Passionate about clean architecture & scalable backend systems
-          </p>
-          <p className="text-neutral-700 mt-2">
-            -🧩 Open Source Contributor -💬 Ask me about Javascript,
-            TypesScript, Node.js, REST APIs, TRPC and System Design
-          </p>
-          <p className="text-neutral-700 mt-2">
-            -⚡ Fun fact: I love debugging and simplifying complex systems.
+          <p className="text-900">
+            Hi, I am Ridhim Full-Stack Developer with 3+ years of expirence specializing in authentication, high‑reliability systems, and TypeScript.
           </p>
         </section>
 
@@ -52,7 +41,7 @@ export default function Home() {
             {skills.map((skill) => (
               <span
                 key={skill.name}
-                className="inline-flex items-center gap-2 rounded-full border border-dashed border-neutral-300 bg-white px-4 py-2 text-sm shadow-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-dashed border-neutral-300 bg-white px-4 py-2 text-sm text-black shadow-sm"
               >
                 <Image
                   src={skill.logo}
@@ -83,7 +72,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="space-y-3 rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+          <div className="space-y-3 rounded-2xl border border-neutral-200 bg-white p-5 text-black shadow-sm">
             <div className="text-2xl font-semibold">Companies</div>
             <div className="space-y-4">
               {workHistory.map((item) => (
@@ -93,13 +82,13 @@ export default function Home() {
                     aria-hidden
                   />
                   <div className="space-y-1">
-                    <div className="text-xs uppercase tracking-wide text-neutral-500">
+                    <div className="text-xs uppercase tracking-wide -500">
                       {item.period}
                     </div>
-                    <div className="text-lg font-semibold text-neutral-900">
+                    <div className="text-lg font-semibold -900">
                       {item.company}
                     </div>
-                    <div className="text-sm text-neutral-700">
+                    <div className="text-sm -700">
                       {item.location}
                     </div>
                   </div>
@@ -116,11 +105,11 @@ export default function Home() {
           </h2>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
+            <article className="rounded-2xl border border-neutral-200 bg-white p-4 text-black shadow-sm">
               <header className="flex items-center justify-between mb-2">
                 <div>
                   <h3 className="font-semibold">Better Auth</h3>
-                  <p className="text-xs text-neutral-500">
+                  <p className="text-xs -500">
                     Core auth framework · TypeScript
                   </p>
                 </div>
@@ -132,7 +121,7 @@ export default function Home() {
                   View PRs
                 </a>
               </header>
-              <ul className="text-xs text-neutral-700 list-disc ml-4 space-y-1">
+              <ul className="text-xs -700 list-disc ml-4 space-y-1">
                 <li>16+ PRs across core, adapters.</li>
                 <li>
                   Implemented features, bugs around plugins, sessions, mcp etc.
@@ -140,11 +129,11 @@ export default function Home() {
               </ul>
             </article>
 
-            <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
+            <article className="rounded-2xl border border-neutral-200 bg-white p-4 text-black  shadow-sm">
               <header className="flex items-center justify-between mb-2">
                 <div>
                   <h3 className="font-semibold">UnKey</h3>
-                  <p className="text-xs text-neutral-500">
+                  <p className="text-xs -500">
                     API key infra · Go/TS
                   </p>
                 </div>
@@ -156,7 +145,7 @@ export default function Home() {
                   View PRs
                 </a>
               </header>
-              <ul className="text-xs text-neutral-700 list-disc ml-4 space-y-1">
+              <ul className="text-xs -700 list-disc ml-4 space-y-1">
                 <li>
                   Contributed to rate limiting, analytics, and DX improvements.
                 </li>
@@ -179,7 +168,7 @@ export default function Home() {
                   Fastoo
                 </a>
               </h3>
-              <p className="text-sm text-neutral-700">
+              <p className="text-sm -700">
                 Fastoo is a multi-currency e-wallet that enables users to
                 securely and easily manage their finances without compromising
                 privacy. At Fastoo, we prioritise safeguarding our users
@@ -196,7 +185,7 @@ export default function Home() {
                   Bitanica Mines
                 </a>
               </h3>
-              <p className="text-sm text-neutral-700">
+              <p className="text-sm -700">
                 Game for Bitanica Mines crypto game for web and Telegram bot.
               </p>
             </div>
