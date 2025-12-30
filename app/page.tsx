@@ -124,7 +124,7 @@ export default function Home() {
                       {item.period}
                     </div>
                     <div className="text-lg font-semibold -900 text-white">
-                      <Link href={item.link} target="_blank" className="underline decoration-[var(--matrix-green)]">
+                      <Link href={item.link} target="_blank" className="underline">
                       {item.company}
                       </Link>
                     </div>
@@ -201,14 +201,14 @@ export default function Home() {
 
         {/* Projects */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">Projects</h2>
+          <h2 className="text-2xl font-semibold text-[var(--matrix-green)]">Projects</h2>
           <div className="space-y-3">
             <div>
               <h3 className="font-semibold">
                 <a
                   href="https://fastoo.app"
                   target="_blank"
-                  className="underline"
+                  className="underline "
                 >
                   Fastoo
                 </a>
