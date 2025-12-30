@@ -1,5 +1,6 @@
 import Image from "next/image";
-
+import Header from "./header";
+import Link from "next/link";
 const skills = [
   { name: "TypeScript", logo: "/logos/typescript.png" },
   { name: "JavaScript", logo: "/logos/js.png" },
@@ -14,28 +15,64 @@ const skills = [
 const workHistory = [
   {
     company: "Suffescom Solutions",
+    link: "https://www.suffescom.com/",
     period: "Sept 2024 - Oct 2025",
     location: "Mohali, India",
+    details: [
+      "Owned end-to-end development of multiple features across frontend and backend,acting as the primary technical point of contact between clients and the engineering team",
+      "Built and evolved core application workflows, integrating external services and ensuring reliability across production systems.",
+    ],
   },
   {
     company: "Immanent Solutions",
+    link: "https://immanentsolutions.com/",
     period: "Aug 2022 - Aug 2024",
     location: "Mohali, India",
+    details: [
+      "Worked across frontend and backend on production applications, collaborating with senior engineers to translate requirements into reliable systems.",
+      "Contributed to core user workflows and service integrations, supporting maintainable backend modules and user-facing features.",
+    ],
   },
 ];
 
 export default function Home() {
   return (
     <main className="min-h-screen  px-4 py-12 md:px-8 lg:px-12">
+      {/* <Header /> */}
       <article className="mx-auto max-w-4xl space-y-12">
-        <h1 className="text-4xl font-semibold mb-8">Ridhim Singh Raizada</h1>
+        <h1 className="text-2xl  mb-8">Hi, I'm Ridhim Singh Raizada 👋</h1>
         <section>
           <p className="text-900">
-            Hi, I am Ridhim Full-Stack Developer with 3+ years of expirence specializing in authentication, high‑reliability systems, and TypeScript.
+            I'm a Full-Stack Developer with 3+ years of experience, focused on
+            building secure and reliable systems.
+          </p>
+          <br />
+          <p>
+            I believe{" "}
+            <span className="font-bold text-[var(--matrix-green)]">
+              first-principles thinking
+            </span>{" "}
+            is key to solving complex problems in an ever-changing tech
+            landscape. While tools and frameworks evolve, strong fundamentals
+            remain constant.
+          </p>
+          <br />
+          <p>
+            {" "}
+            I specialize in{" "}
+            <span className="font-bold text-[var(--matrix-green)]">
+              authentication systems, high-reliability backends, and TypeScript.
+            </span>
+          </p>
+          <br />
+          <p className="text-[var(--matrix-green)]">
+            {" "}
+            Currently contributing to open-source projects including Better Auth
+            .
           </p>
         </section>
 
-        <section>
+        {/* <section>
           <h1 className="text-4xl font-semibold mb-2">Skills</h1>
           <div className="flex flex-wrap gap-3">
             {skills.map((skill) => (
@@ -54,27 +91,28 @@ export default function Home() {
               </span>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* Experience */}
         <section className="space-y-6">
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <div>
-              <h2 className="text-2xl font-semibold">Experience</h2>
+              <h2 className="text-2xl font-semibold text-[var(--matrix-green)]">
+                Professional Experience
+              </h2>
             </div>
             <a
               href="https://drive.google.com/file/d/1YaOaUp4tkEjY5Iwz2PzQJ8ORWGSFZQ5u/view?usp=drive_link"
               target="_blank"
               download
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-900 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="inline-flex items-center gap-2 rounded-full border border-black bg-[var(--matrix-green)] px-4 py-2 text-sm font-bold text-black shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
-              <span>Download resume</span>
+              <span>Resume</span>
             </a>
           </div>
 
-          <div className="space-y-3 rounded-2xl border border-neutral-200 bg-white p-5 text-black shadow-sm">
-            <div className="text-2xl font-semibold">Companies</div>
-            <div className="space-y-4">
+          <div className="space-y-3 rounded-2xl  bg-neutral p-5 text-black shadow-sm">
+            <div className="space-y-6">
               {workHistory.map((item) => (
                 <div key={item.company} className="flex items-start gap-3">
                   <div
@@ -82,14 +120,23 @@ export default function Home() {
                     aria-hidden
                   />
                   <div className="space-y-1">
-                    <div className="text-xs uppercase tracking-wide -500">
+                    <div className="text-xs uppercase tracking-wide -500 text-white">
                       {item.period}
                     </div>
-                    <div className="text-lg font-semibold -900">
+                    <div className="text-lg font-semibold -900 text-white">
+                      <Link href={item.link} target="_blank" className="underline decoration-[var(--matrix-green)]">
                       {item.company}
+                      </Link>
                     </div>
-                    <div className="text-sm -700">
+                    <div className="text-sm -700 text-white mb-3">
                       {item.location}
+                    </div>
+                    <div>
+                      <ul className="list-disc pl-5 space-y-1 mt-2 text-white">
+                        {item.details.map((detail, index) => (
+                          <li key={`${detail}-${index}`}>{detail}</li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -100,7 +147,7 @@ export default function Home() {
 
         {/* Open Source Contributions */}
         <section className="mt-12">
-          <h2 className="text-2xl font-semibold mb-4">
+          <h2 className="text-2xl font-semibold mb-4 text-[var(--matrix-green)]">
             Open Source Contributions
           </h2>
 
@@ -133,9 +180,7 @@ export default function Home() {
               <header className="flex items-center justify-between mb-2">
                 <div>
                   <h3 className="font-semibold">UnKey</h3>
-                  <p className="text-xs -500">
-                    API key infra · Go/TS
-                  </p>
+                  <p className="text-xs -500">API key infra · Go/TS</p>
                 </div>
                 <a
                   href="https://github.com/unkeyed/unkey/pulls/Ridhim-RR"
@@ -194,7 +239,7 @@ export default function Home() {
 
         {/* Contact */}
         <section className="space-y-1">
-          <h2 className="text-2xl font-semibold">Contact</h2>
+          <h2 className="text-2xl font-semibold text-[var(--matrix-green)]">Contact</h2>
           <p>Email: ridhimraizada.rr@gmail.com</p>
           <p>
             <a
