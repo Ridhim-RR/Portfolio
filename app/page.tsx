@@ -196,6 +196,48 @@ export default function Home() {
                 </li>
               </ul>
             </article>
+
+             <article className="rounded-2xl border border-neutral-200 bg-white p-4 text-black  shadow-sm">
+              <header className="flex items-center justify-between mb-2">
+                <div>
+                  <h3 className="font-semibold">BubbleLab</h3>
+                  <p className="text-xs -500">AI-first TypeScript-native Workflow automation</p>
+                </div>
+                <a
+                  href="https://github.com/bubblelabai/BubbleLab/pulls/Ridhim-RR"
+                  className="text-xs underline"
+                  target="_blank"
+                >
+                  View PRs
+                </a>
+              </header>
+              <ul className="text-xs -700 list-disc ml-4 space-y-1">
+                <li>
+                  Contribute automation workflow.
+                </li>
+              </ul>
+            </article>
+
+             <article className="rounded-2xl border border-neutral-200 bg-white p-4 text-black  shadow-sm">
+              <header className="flex items-center justify-between mb-2">
+                <div>
+                  <h3 className="font-semibold">Activepieces</h3>
+                  <p className="text-xs -500">AI Agents & MCPs & AI Workflow Automation</p>
+                </div>
+                <a
+                  href="https://github.com/activepieces/activepieces/pulls/Ridhim-RR"
+                  className="text-xs underline"
+                  target="_blank"
+                >
+                  View PRs
+                </a>
+              </header>
+              <ul className="text-xs -700 list-disc ml-4 space-y-1">
+                <li>
+                  Contributed to core and infrastructure/database flow.
+                </li>
+              </ul>
+            </article>
           </div>
         </section>
 
