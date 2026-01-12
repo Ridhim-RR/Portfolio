@@ -1,6 +1,9 @@
+"use client";
 import Image from "next/image";
 import Header from "./header";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { ClientPageRoot } from "next/dist/client/components/client-page";
 const skills = [
   { name: "TypeScript", logo: "/logos/typescript.png" },
   { name: "JavaScript", logo: "/logos/js.png" },
@@ -19,8 +22,8 @@ const workHistory = [
     period: "Sept 2024 - Oct 2025",
     location: "Mohali, India",
     details: [
-      "Owned end-to-end development of multiple features across frontend and backend,acting as the primary technical point of contact between clients and the engineering team",
-      "Built and evolved core application workflows, integrating external services and ensuring reliability across production systems.",
+      "Designed and owned end-to-end authentication and payment workflows, integrating third-party gateways and implementing idempotency and reconciliation logic to reduce payment transaction mismatch cases by ~75–80%.",
+      "Designed a real-time game state management system that reduced backend bottlenecks and cut gameplay latency by ~40%, significantly improving responsiveness.",
     ],
   },
   {
@@ -29,13 +32,37 @@ const workHistory = [
     period: "Aug 2022 - Aug 2024",
     location: "Mohali, India",
     details: [
-      "Worked across frontend and backend on production applications, collaborating with senior engineers to translate requirements into reliable systems.",
-      "Contributed to core user workflows and service integrations, supporting maintainable backend modules and user-facing features.",
+      "Developed and maintained production-ready frontend and backend features, contributing to core workflows, service integrations, and maintainable backend modules over 2 years.",
+      "Delivered multiple client-facing features and backend optimizations, improving reliability and system responsiveness.",
     ],
   },
 ];
 
 export default function Home() {
+  const [contributed, setContributed] = useState([]);
+  const [totalPRs, setTotalPRs] = useState(0);
+
+  const api = async () => {
+    const res = await fetch(
+      "https://api.github.com/search/issues?q=is:pr+author:Ridhim-RR&per_page=20",
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+          Accept: "application/vnd.github+json",
+        },
+      }
+    );
+    if (res?.status === 200) {
+      const data = await res.json();
+      setTotalPRs(data.total_count);
+      setContributed(data.items);
+    }
+  };
+
+  useEffect(() => {
+    api();
+  }, []);
+
   return (
     <main className="min-h-screen  px-4 py-12 md:px-8 lg:px-12">
       {/* <Header /> */}
@@ -124,8 +151,12 @@ export default function Home() {
                       {item.period}
                     </div>
                     <div className="text-lg font-semibold -900 text-white">
-                      <Link href={item.link} target="_blank" className="underline">
-                      {item.company}
+                      <Link
+                        href={item.link}
+                        target="_blank"
+                        className="underline"
+                      >
+                        {item.company}
                       </Link>
                     </div>
                     <div className="text-sm -700 text-white mb-3">
@@ -145,105 +176,46 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Open Source Contributions */}
         <section className="mt-12">
           <h2 className="text-2xl font-semibold mb-4 text-[var(--matrix-green)]">
             Open Source Contributions
           </h2>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <article className="rounded-2xl border border-neutral-200 bg-white p-4 text-black shadow-sm">
-              <header className="flex items-center justify-between mb-2">
-                <div>
-                  <h3 className="font-semibold">Better Auth</h3>
-                  <p className="text-xs -500">
-                    Core auth framework · TypeScript
-                  </p>
-                </div>
-                <a
-                  href="https://github.com/better-auth/better-auth/pulls/Ridhim-RR"
-                  className="text-xs underline"
-                  target="_blank"
-                >
-                  View PRs
-                </a>
-              </header>
-              <ul className="text-xs -700 list-disc ml-4 space-y-1">
-                <li>16+ PRs across core, adapters.</li>
-                <li>
-                  Implemented features, bugs around plugins, sessions, mcp etc.
+          <h4 className="text-1xl font-semibold mb-4 text-[var(--matrix-green)]">
+            Recent Contributions(Total PRs: {totalPRs})
+          </h4>
+          <ul className="list-disc pl-5 space-y-2 text-base text-white font-medium">
+            {contributed?.length > 0 ? (
+              contributed.map((item: any) => (
+                <li key={item.id}>
+                  <Link
+                    href={item.html_url || item.url}
+                    target="_blank"
+                    className="underline"
+                  >
+                    {item.title || item.html_url || item.url}
+                  </Link>
                 </li>
-              </ul>
-            </article>
-
-            <article className="rounded-2xl border border-neutral-200 bg-white p-4 text-black  shadow-sm">
-              <header className="flex items-center justify-between mb-2">
-                <div>
-                  <h3 className="font-semibold">UnKey</h3>
-                  <p className="text-xs -500">API key infra · Go/TS</p>
-                </div>
-                <a
-                  href="https://github.com/unkeyed/unkey/pulls/Ridhim-RR"
-                  className="text-xs underline"
-                  target="_blank"
-                >
-                  View PRs
-                </a>
-              </header>
-              <ul className="text-xs -700 list-disc ml-4 space-y-1">
-                <li>
-                  Contributed to rate limiting, analytics, and DX improvements.
-                </li>
-              </ul>
-            </article>
-
-             <article className="rounded-2xl border border-neutral-200 bg-white p-4 text-black  shadow-sm">
-              <header className="flex items-center justify-between mb-2">
-                <div>
-                  <h3 className="font-semibold">BubbleLab</h3>
-                  <p className="text-xs -500">AI-first TypeScript-native Workflow automation</p>
-                </div>
-                <a
-                  href="https://github.com/bubblelabai/BubbleLab/pulls/Ridhim-RR"
-                  className="text-xs underline"
-                  target="_blank"
-                >
-                  View PRs
-                </a>
-              </header>
-              <ul className="text-xs -700 list-disc ml-4 space-y-1">
-                <li>
-                  Contribute automation workflow.
-                </li>
-              </ul>
-            </article>
-
-             <article className="rounded-2xl border border-neutral-200 bg-white p-4 text-black  shadow-sm">
-              <header className="flex items-center justify-between mb-2">
-                <div>
-                  <h3 className="font-semibold">Activepieces</h3>
-                  <p className="text-xs -500">AI Agents & MCPs & AI Workflow Automation</p>
-                </div>
-                <a
-                  href="https://github.com/activepieces/activepieces/pulls/Ridhim-RR"
-                  className="text-xs underline"
-                  target="_blank"
-                >
-                  View PRs
-                </a>
-              </header>
-              <ul className="text-xs -700 list-disc ml-4 space-y-1">
-                <li>
-                  Contributed to core and infrastructure/database flow.
-                </li>
-              </ul>
-            </article>
+              ))
+            ) : (
+              <p className="text-base text-white/80">Loading...</p>
+            )}
+          </ul>
+          <div className="mt-4">
+            <a
+              href="https://github.com/pulls?q=is%3Apr+author%3ARidhim-RR"
+              target="_blank"
+              className="inline-flex items-center gap-2 rounded-full border border-black bg-[var(--matrix-green)] px-4 py-2 text-sm font-bold text-black shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            >
+              See more on GitHub
+            </a>
           </div>
         </section>
 
         {/* Projects */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-[var(--matrix-green)]">Projects</h2>
+          <h2 className="text-2xl font-semibold text-[var(--matrix-green)]">
+            Projects
+          </h2>
           <div className="space-y-3">
             <div>
               <h3 className="font-semibold">
@@ -281,7 +253,9 @@ export default function Home() {
 
         {/* Contact */}
         <section className="space-y-1">
-          <h2 className="text-2xl font-semibold text-[var(--matrix-green)]">Contact</h2>
+          <h2 className="text-2xl font-semibold text-[var(--matrix-green)]">
+            Contact
+          </h2>
           <p>Email: ridhimraizada.rr@gmail.com</p>
           <p>
             <a
